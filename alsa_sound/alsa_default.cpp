@@ -1414,7 +1414,7 @@ void s_set_voice_volume(int vol)
         err = csd_client_volume(vol);
         if (err < 0) {
             ALOGE("s_set_voice_volume: csd_client error %d", err);
-        } 
+        }
 #endif
     }
 }
@@ -1427,10 +1427,12 @@ void s_set_sglte_volume(int vol)
     control.set("SGLTE Rx Volume", vol, 0);
 
     if (platform_is_Fusion3()) {
+#ifdef QCOM_CSDCLIENT_ENABLED
         err = csd_client_volume(vol);
         if (err < 0) {
             ALOGE("s_set_sglte_volume: csd_client error %d", err);
         }
+#endif
     }
 }
 
@@ -1472,10 +1474,12 @@ void s_set_sglte_mic_mute(int state)
     control.set("SGLTE Tx Mute", state, 0);
 
     if (platform_is_Fusion3()) {
+#ifdef QCOM_CSDCLIENT_ENABLED
         err = csd_client_mic_mute(state);
         if (err < 0) {
             ALOGE("s_set_sglte_mic_mute: csd_client error %d", err);
         }
+#endif
     }
 }
 void s_set_volte_mic_mute(int state)
